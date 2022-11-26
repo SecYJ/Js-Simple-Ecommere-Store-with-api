@@ -8,7 +8,7 @@ const productMarkup = (productsData) => {
 			return `
                 <li class="relative flex flex-col">
                     <div>
-                        <img src=${images} alt="" class="h-full" />
+                        <img src=${images} alt="" class="h-full w-full" />
                         <div class="absolute top-2 py-2 px-6 bg-black text-white right-0">
                             ${category}
                         </div>
@@ -61,9 +61,6 @@ const render = (el, htmlMarkup, data) => {
 
 const init = async () => {
 	try {
-		// const [productsData, cartsList] = await Promise.allSettled(
-		// 	urlEndPoints.map((endpoint) => fetchData(endpoint))
-		// );
 		const [productsData, cartsData] = await Promise.allSettled(
 			urlEndPoints.map((endpoint) => fetchData(endpoint))
 		);
@@ -75,8 +72,3 @@ const init = async () => {
 };
 
 init();
-
-// Promise.allSettled => productList => cartList =>
-
-// const t = await fetchData("products");
-// console.log(t);
