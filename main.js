@@ -7,11 +7,11 @@ const productMarkup = (productsData) => {
 			const { origin_price, price, title, images, category } = product;
 			return `
                 <li class="relative flex flex-col">
+                    <div class="absolute top-2 py-2 px-6 bg-black text-white right-0">
+                        ${category}
+                    </div>
                     <div>
                         <img src=${images} alt="" class="h-full w-full" />
-                        <div class="absolute top-2 py-2 px-6 bg-black text-white right-0">
-                            ${category}
-                        </div>
                         <button
                             type="button"
                             class="bg-black text-white w-full py-3 hover:bg-black/80 transition-colors"
