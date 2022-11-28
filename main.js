@@ -13,6 +13,7 @@ const productsList = document.querySelector("#products-list");
 const cartList = document.querySelector("#cart-list");
 const cartListBottom = document.querySelector("#cart-list-bottom");
 const cartListTotalPrice = document.querySelector("#cart-list-total-price");
+const cartHeader = document.querySelector("#cart-header");
 
 const state = {
 	productsList: [],
@@ -75,43 +76,40 @@ const productMarkup = (productsData) => {
 const cartHTML = (cartsData) => {
 	const cartListBottom = document.querySelector("#cart-list-bottom");
 	if (cartsData.length === 0) {
+		cartHeader.classList.add("hidden");
 		cartListBottom.classList.remove("flex");
 		cartListBottom.classList.add("hidden");
-		return `<li class="text-center">当前购物列表为空!</li>`;
+		return `<td class="text-center">当前购物列表为空!</td>`;
 	}
-
-	const labelsMarkup = `
-        <li class="grid grid-cols-[repeat(6,auto)]">
-            <p class="mr-[15px]">品項</p>
-            <p class="w-[14ch] mr-[30px]"></p>
-            <p class="mr-[90px]">單價</p>
-            <p class="mr-[178px]">數量</p>
-            <p class="mr-[90px]">金額</p>
-        </li>
-    `;
 
 	const markup = cartsData.map((cart) => {
 		const { id: productId, images, price, title } = cart.product;
 		const { id: cartProductId, quantity } = cart;
 
 		return `
-        <li
-            class="grid grid-cols-[repeat(6,auto)] items-center border-b border-[#bfbfbf] pb-5"
-        >
-            <img src=${images} class="w-20 h-20 object-cover mr-[15px]" alt=${title} />
-            <p class="w-[14ch] mr-[30px]">${title}</p>
-            <p class="mr-[90px]">NT$${price}</p>
-            <p class="mr-[178px]">${quantity}</p>
-            <p class="mr-[90px]">NT$${quantity * price}</p>
-            <button type="button" class="material-icons" data-id=${cartProductId}>clear</button>
-        </li>
+            <tr>
+                <td width="300">
+                    <img src=${images} class="inline-block w-20 h-20" />
+                    <p class="w-[14ch] inline-block align-middle ml-4">
+                        ${title}
+                    </p>
+                </td>
+                <td></td>
+                <td><p>NT$${price}</p></td>
+                <td><p>${quantity}</p></td>
+                <td><p>NT$${quantity * price}</p></td>
+                <td>
+                    <button type="button" class="material-icons" data-id=${cartProductId}>clear</button>
+                </td>
+            </tr>
       `;
 	});
 
+	cartHeader.classList.remove("hidden");
 	cartListBottom.classList.remove("hidden");
 	cartListBottom.classList.add("flex");
 
-	return labelsMarkup + markup.join("");
+	return markup.join("");
 };
 
 const render = (el, htmlMarkup, data) => {
@@ -156,9 +154,22 @@ productsFilterSelect.addEventListener("change", (e) => {
 
 placeOrderForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
-	const t = new FormData(e.target);
-	const testing = Object.fromEntries(t);
-	await placeOrder(testing);
+	const formDetails = new FormData(e.target);
+
+	[...formDetails].forEach((input) => {
+		const [key, val] = input;
+		if (key === "payment") return;
+
+		const nextSibling = e.target[key].nextElementSibling.classList;
+		if (val.trim() === "") nextSibling.remove("hidden");
+		else nextSibling.add("hidden");
+	});
+
+	const isAllInputsValid = [...formDetails].every(([, val]) => val.trim() !== "");
+	if (!isAllInputsValid) return;
+
+	await placeOrder(Object.fromEntries(formDetails));
+	e.target.reset();
 });
 
 productsList.addEventListener("click", async (e) => {
