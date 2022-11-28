@@ -302,11 +302,14 @@
 				<!-- product list and filter -->
 				<div class="mt-[4.5rem]">
 					<select
-						name="product-list"
-						id="product-list"
+						name="products-list"
+						id="products-filter-select"
 						class="min-w-[255px] py-2 px-3 bg-transparent border border-[#CED4DA] rounded-[.25rem] text-base"
 					>
 						<option value="全部">全部</option>
+						<option value="床架">床架</option>
+						<option value="收納">收納</option>
+						<option value="窗簾">窗簾</option>
 					</select>
 					<ul class="mt-8 grid grid-cols-4 gap-x-[30px] gap-y-9" id="products-list"></ul>
 				</div>
@@ -316,14 +319,14 @@
 				<div class="container">
 					<h2 class="text-center text-[1.75rem] mb-8">我的購物車</h2>
 					<div class="max-w-[920px] mx-auto">
-						<ul class="space-y-5">
-							<li class="grid grid-cols-[repeat(6,auto)]">
+						<ul class="space-y-5" id="cart-list">
+							<!-- <li class="grid grid-cols-[repeat(6,auto)]">
 								<p class="mr-[15px]">品項</p>
 								<p class="w-[14ch] mr-[30px]"></p>
 								<p class="mr-[90px]">單價</p>
 								<p class="mr-[178px]">數量</p>
 								<p class="mr-[90px]">金額</p>
-							</li>
+							</li> -->
 							<li
 								class="grid grid-cols-[repeat(6,auto)] items-center border-b border-[#bfbfbf] pb-5"
 							>
@@ -355,7 +358,7 @@
 								<button type="button" class="material-icons">clear</button>
 							</li>
 						</ul>
-						<div class="flex justify-between mt-5">
+						<div class="flex justify-between mt-5" id="cart-list-bottom">
 							<button
 								type="button"
 								class="border border-black rounded-[.25rem] py-2.5 px-5 hover:bg-black hover:text-white transition-colors"
@@ -364,7 +367,9 @@
 							</button>
 							<div class="flex gap-14 items-center">
 								<p>總金額</p>
-								<strong class="text-[1.75rem]">NT$13,980</strong>
+								<strong class="text-[1.75rem]" id="cart-list-total-price"
+									>NT$13,980</strong
+								>
 							</div>
 						</div>
 					</div>
@@ -374,14 +379,17 @@
 			<section class="pt-[3.75rem] pb-20">
 				<h2 class="text-[1.75rem] mb-8 text-center">填寫預訂資料</h2>
 
-				<form class="max-w-[350px] [&>:not(:last-child)]:mb-5 mx-auto text-base">
+				<form
+					class="max-w-[350px] [&>:not(:last-child)]:mb-5 mx-auto text-base"
+					id="pre-order"
+				>
 					<div class="flex flex-col gap-1.5">
-						<label for="username" class="text-base">姓名</label>
+						<label for="name" class="text-base">姓名</label>
 						<div class="relative">
 							<input
 								type="text"
-								id="username"
-								name="username"
+								id="name"
+								name="name"
 								placeholder="請輸入姓名"
 								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full"
 							/>
@@ -392,12 +400,12 @@
 						</div>
 					</div>
 					<div class="flex flex-col gap-1.5">
-						<label for="phone-number" class="text-base">電話</label>
+						<label for="tel" class="text-base">電話</label>
 						<div class="relative">
 							<input
 								type="number"
-								id="phone-number"
-								name="phone-number"
+								id="tel"
+								name="tel"
 								placeholder="請輸入電話"
 								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full appearance-none [-moz-appearance:textfield]"
 							/>
@@ -443,8 +451,8 @@
 						<label for="payment-method" class="text-base">交易方式</label>
 						<div class="relative">
 							<select
-								name="payment-method"
-								id="payment-method"
+								name="payment"
+								id="payment"
 								class="w-full py-2 px-3 bg-transparent text-[#818A91] border border-[#CED4DA]"
 							>
 								<option value="ATM">ATM</option>
