@@ -12,21 +12,26 @@
 			<a href="#" class="font-bold text-[1.5rem]">WOWOROOM</a>
 			<ul class="flex gap-12">
 				<li>
-					<a href="#" class="hover:border-b-primary border-b border-b-transparent"
+					<a
+						href="#mattress-advantage"
+						class="hover:border-b-primary border-b border-b-transparent"
 						>床墊優勢</a
 					>
 				</li>
 				<li>
-					<a href="#" class="hover:border-b-primary border-b border-b-transparent"
+					<a href="#reviews" class="hover:border-b-primary border-b border-b-transparent"
 						>好評推薦</a
 					>
 				</li>
 				<li>
-					<a href="#" class="hover:border-b-primary border-b border-b-transparent"
-						>運送方式</a
+					<a
+						href="#delivery"
+						class="hover:border-b-primary border-b border-b-transparent"
 					>
+						運送方式
+					</a>
 				</li>
-				<li><a href="#" class="text-primary">立即預訂</a></li>
+				<li><a href="#place-order" class="text-primary">立即預訂</a></li>
 			</ul>
 		</header>
 
@@ -49,8 +54,10 @@
 			</section>
 
 			<section class="py-[3.75rem] container">
-				<h2 class="text-[1.75rem] text-center mb-[1.75rem]">床墊優勢</h2>
-				<ul class="grid grid-cols-3 gap-[30px]">
+				<h2 class="text-[1.75rem] text-center mb-[1.75rem]" id="mattress-advantage">
+					床墊優勢
+				</h2>
+				<ul class="grid gap-[30px] grid-cols-3">
 					<li>
 						<img src="./assets/mattress.png" class="w-full object-cover" alt="" />
 						<p class="text-center mt-2">原木料環保</p>
@@ -149,7 +156,9 @@
 
 			<section class="bg-primary-extra-dark pt-[3.75rem] pb-20">
 				<div class="container">
-					<h2 class="text-white text-center mb-8 text-[1.75rem]">好評推薦</h2>
+					<h2 class="text-white text-center mb-8 text-[1.75rem]" id="reviews">
+						好評推薦
+					</h2>
 					<ul class="grid grid-cols-3 gap-[30px] ml-24">
 						<li class="grid grid-cols-[auto_1fr] bg-white">
 							<img src="./assets/review-1.png" class="object-cover h-full" />
@@ -259,7 +268,7 @@
 			</section>
 
 			<section class="container pt-8 pb-[3.75rem]">
-				<h2 class="text-center text-[1.75rem] mb-8">運送方式</h2>
+				<h2 class="text-center text-[1.75rem] mb-8" id="delivery">運送方式</h2>
 				<ul class="flex justify-center gap-[25px]">
 					<li class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]">
 						<span
@@ -330,7 +339,7 @@
 				<div class="container">
 					<h2 class="text-center text-[1.75rem] mb-8">我的購物車</h2>
 					<div class="max-w-[920px] mx-auto">
-						<table class="w-full">
+						<table class="w-full [&:first-child_tr_td]:pb-5">
 							<thead id="cart-header">
 								<tr>
 									<td>品項</td>
@@ -342,6 +351,36 @@
 								</tr>
 							</thead>
 							<tbody id="cart-list">
+								<tr>
+									<td width="300">
+										<img src="./assets/review-2.png" class="inline-block" />
+										<p class="w-[14ch] inline-block align-middle ml-4">
+											Antony 雙人床架／雙人加大
+										</p>
+									</td>
+									<td></td>
+									<td><p>NT$12,000</p></td>
+									<td><p>1</p></td>
+									<td><p>NT$12,000</p></td>
+									<td>
+										<button type="button" class="material-icons">clear</button>
+									</td>
+								</tr>
+								<tr>
+									<td width="300">
+										<img src="./assets/review-2.png" class="inline-block" />
+										<p class="w-[14ch] inline-block align-middle ml-4">
+											Antony 雙人床架／雙人加大
+										</p>
+									</td>
+									<td></td>
+									<td><p>NT$12,000</p></td>
+									<td><p>1</p></td>
+									<td><p>NT$12,000</p></td>
+									<td>
+										<button type="button" class="material-icons">clear</button>
+									</td>
+								</tr>
 								<tr>
 									<td width="300">
 										<img src="./assets/review-2.png" class="inline-block" />
@@ -378,7 +417,7 @@
 			</section>
 
 			<section class="pt-[3.75rem] pb-20">
-				<h2 class="text-[1.75rem] mb-8 text-center">填寫預訂資料</h2>
+				<h2 class="text-[1.75rem] mb-8 text-center" id="place-order">填寫預訂資料</h2>
 
 				<form
 					class="max-w-[350px] [&>:not(:last-child)]:mb-5 mx-auto text-base"
@@ -467,7 +506,7 @@
 					</div>
 					<button
 						type="submit"
-						class="bg-black block hover:bg-black/80 transition-colors text-white rounded-[.25rem] py-2.5 px-[4.25rem] mx-auto mt-12"
+						class="bg-black block hover:bg-primary transition-colors text-white rounded-[.25rem] py-2.5 px-[4.25rem] mx-auto mt-12"
 					>
 						送出預訂資料
 					</button>

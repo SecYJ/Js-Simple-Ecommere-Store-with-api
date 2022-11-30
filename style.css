@@ -3,7 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply text-[1.25rem];
-	}
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply text-[1.25rem];
+    }
+
+    #order-table,
+    #order-table tr,
+    #order-table td {
+        @apply border-collapse border border-black;
+    }
+
+    #order-table td {
+        @apply py-3 px-4;
+    }
 }
