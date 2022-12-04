@@ -1,519 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-		<title>Vite App</title>
-	</head>
-	<body>
-		<header class="py-9 flex justify-between container items-center">
-			<a href="#" class="font-bold text-[1.5rem]">WOWOROOM</a>
-			<ul class="flex gap-12">
-				<li>
-					<a
-						href="#mattress-advantage"
-						class="hover:border-b-primary border-b border-b-transparent"
-						>床墊優勢</a
-					>
-				</li>
-				<li>
-					<a href="#reviews" class="hover:border-b-primary border-b border-b-transparent"
-						>好評推薦</a
-					>
-				</li>
-				<li>
-					<a
-						href="#delivery"
-						class="hover:border-b-primary border-b border-b-transparent"
-					>
-						運送方式
-					</a>
-				</li>
-				<li><a href="#place-order" class="text-primary">立即預訂</a></li>
-			</ul>
-		</header>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <title>Vite App</title>
+    </head>
+    <body>
+        <header class="container flex items-center justify-between py-9">
+            <a href="#" class="text-[1.5rem] font-bold">WOWOROOM</a>
+            <ul class="flex gap-12">
+                <li>
+                    <a
+                        href="./pages/incomes.html"
+                        class="border-b border-b-transparent hover:border-b-primary"
+                        >后台</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#mattress-advantage"
+                        class="border-b border-b-transparent hover:border-b-primary"
+                        >床墊優勢</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#reviews"
+                        class="border-b border-b-transparent hover:border-b-primary"
+                        >好評推薦</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#delivery"
+                        class="border-b border-b-transparent hover:border-b-primary"
+                    >
+                        運送方式
+                    </a>
+                </li>
+                <li>
+                    <a href="#place-order" class="text-primary">立即預訂</a>
+                </li>
+            </ul>
+        </header>
 
-		<!-- empty black bar -->
-		<div class="bg-black h-10 mb-8"></div>
+        <!-- empty black bar -->
+        <div class="mb-8 h-10 bg-black"></div>
 
-		<main>
-			<section class="container">
-				<div class="relative">
-					<img
-						src="./assets/banner.png"
-						class="w-full h-[420px] object-cover"
-						alt="banner"
-					/>
-					<h1 class="text-white text-[2rem] absolute bottom-12 left-[3.25rem]">
-						窩窩家居 <br />
-						跟您一起品味生活
-					</h1>
-				</div>
-			</section>
+        <main>
+            <section class="container">
+                <div class="relative">
+                    <img
+                        src="./assets/banner.png"
+                        class="h-[420px] w-full object-cover"
+                        alt="banner"
+                    />
+                    <h1
+                        class="absolute bottom-12 left-[3.25rem] text-[2rem] text-white"
+                    >
+                        窩窩家居 <br />
+                        跟您一起品味生活
+                    </h1>
+                </div>
+            </section>
 
-			<section class="py-[3.75rem] container">
-				<h2 class="text-[1.75rem] text-center mb-[1.75rem]" id="mattress-advantage">
-					床墊優勢
-				</h2>
-				<ul class="grid gap-[30px] grid-cols-3">
-					<li>
-						<img src="./assets/mattress.png" class="w-full object-cover" alt="" />
-						<p class="text-center mt-2">原木料環保</p>
-					</li>
-					<li>
-						<img src="./assets/mattress-2.png" class="w-full object-cover" alt="" />
-						<p class="text-center mt-2">原木料環保</p>
-					</li>
-					<li>
-						<img src="./assets/mattress-3.png" class="w-full object-cover" alt="" />
-						<p class="text-center mt-2">原木料環保</p>
-					</li>
-				</ul>
-			</section>
+            <section class="container py-[3.75rem]">
+                <h2
+                    class="mb-[1.75rem] text-center text-[1.75rem]"
+                    id="mattress-advantage"
+                >
+                    床墊優勢
+                </h2>
+                <ul class="grid grid-cols-3 gap-[30px]">
+                    <li>
+                        <img
+                            src="./assets/mattress.png"
+                            class="w-full object-cover"
+                            alt=""
+                        />
+                        <p class="mt-2 text-center">原木料環保</p>
+                    </li>
+                    <li>
+                        <img
+                            src="./assets/mattress-2.png"
+                            class="w-full object-cover"
+                            alt=""
+                        />
+                        <p class="mt-2 text-center">原木料環保</p>
+                    </li>
+                    <li>
+                        <img
+                            src="./assets/mattress-3.png"
+                            class="w-full object-cover"
+                            alt=""
+                        />
+                        <p class="mt-2 text-center">原木料環保</p>
+                    </li>
+                </ul>
+            </section>
 
-			<section class="bg-[#F8F8F8]">
-				<div class="container pt-12 pb-16">
-					<h2 class="text-center mb-8 text-[1.75rem]">家具比較</h2>
-					<table class="mx-auto [&_td:first-child]:text-left [&_td:first-child]:py-3">
-						<thead>
-							<tr class="text-[#797979]">
-								<th class="pr-[30px]"></th>
-								<th class="px-[30px] py-3 text-black font-normal">
-									窩窩系統模組家具
-								</th>
-								<th class="px-[30px] font-normal">組合式家具</th>
-								<th class="px-[30px] font-normal">實木家具</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="text-center border-b border-[#B9B9B9]">
-								<td>可單人自行組裝</td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-								<td class="text-base text-[#797979]">不一定</td>
-							</tr>
-							<tr class="text-center border-b border-[#B9B9B9]">
-								<td>可多次重複拆裝</td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-							</tr>
-							<tr class="text-center border-b border-[#B9B9B9]">
-								<td>床墊規格彈性大</td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-								<td class="text-base text-[#797979]">不一定</td>
-								<td class="text-base text-[#797979]">不一定</td>
-							</tr>
-							<tr class="text-center border-b border-[#B9B9B9]">
-								<td>材質可長久使用</td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-								<td></td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-							</tr>
-							<tr class="text-center border-b border-[#B9B9B9]">
-								<td>小客車即可搬運</td>
-								<td>
-									<span
-										class="material-icons text-primary text-[2.5rem] align-middle"
-									>
-										done
-									</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</section>
+            <section class="bg-[#F8F8F8]">
+                <div class="container pt-12 pb-16">
+                    <h2 class="mb-8 text-center text-[1.75rem]">家具比較</h2>
+                    <table
+                        class="mx-auto [&_td:first-child]:py-3 [&_td:first-child]:text-left"
+                    >
+                        <thead>
+                            <tr class="text-[#797979]">
+                                <th class="pr-[30px]"></th>
+                                <th
+                                    class="px-[30px] py-3 font-normal text-black"
+                                >
+                                    窩窩系統模組家具
+                                </th>
+                                <th class="px-[30px] font-normal">
+                                    組合式家具
+                                </th>
+                                <th class="px-[30px] font-normal">實木家具</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-[#B9B9B9] text-center">
+                                <td>可單人自行組裝</td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                                <td class="text-base text-[#797979]">不一定</td>
+                            </tr>
+                            <tr class="border-b border-[#B9B9B9] text-center">
+                                <td>可多次重複拆裝</td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-[#B9B9B9] text-center">
+                                <td>床墊規格彈性大</td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                                <td class="text-base text-[#797979]">不一定</td>
+                                <td class="text-base text-[#797979]">不一定</td>
+                            </tr>
+                            <tr class="border-b border-[#B9B9B9] text-center">
+                                <td>材質可長久使用</td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-[#B9B9B9] text-center">
+                                <td>小客車即可搬運</td>
+                                <td>
+                                    <span
+                                        class="material-icons align-middle text-[2.5rem] text-primary"
+                                    >
+                                        done
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-			<section class="bg-primary-extra-dark pt-[3.75rem] pb-20">
-				<div class="container">
-					<h2 class="text-white text-center mb-8 text-[1.75rem]" id="reviews">
-						好評推薦
-					</h2>
-					<ul class="grid grid-cols-3 gap-[30px] ml-24">
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-1.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-1.png"
-									alt=""
-									class="rounded-full row-span-2 w-10 h-10"
-								/>
-								<p class="leading-[22px]">王六角</p>
-								<small class="text-[14px] text-primary leading-[19px]">
-									Jodan 雙人床架
-								</small>
-								<p class="col-span-full mt-2">CP值很高。</p>
-							</div>
-						</li>
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-2.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-2.png"
-									class="rounded-full row-span-2 w-10 h-full"
-								/>
-								<p class="leading-[22px]">Leaf</p>
-								<small class="text-[14px] text-primary leading-[19px]"
-									>Antony 雙人床架</small
-								>
-								<p class="col-span-full mt-2">很喜歡～還有送三年保固～</p>
-							</div>
-						</li>
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-3.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-3.png"
-									alt="美濃鄧子琪"
-									class="rounded-full row-span-2 w-10 h-10"
-								/>
-								<p class="leading-[22px]">美濃鄧子琪</p>
-								<small class="text-[14px] text-primary leading-[19px]"
-									>Charles 系列儲物組合</small
-								>
-								<p class="col-span-full mt-2">廚房必備美用品！</p>
-							</div>
-						</li>
-					</ul>
-					<ul class="grid grid-cols-3 gap-[30px] mt-5">
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-2.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-4.png"
-									alt="小杰"
-									class="rounded-full row-span-2 w-10 h-10"
-								/>
-								<p class="leading-[22px]">小杰</p>
-								<small class="text-[14px] text-primary leading-[19px]"
-									>Louvre 雙人床架
-								</small>
-								<p class="col-span-full mt-2">非常舒適，有需要會再回購</p>
-							</div>
-						</li>
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-5.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-5.png"
-									alt=""
-									class="rounded-full row-span-2 w-10 h-10"
-								/>
-								<p class="leading-[22px]">江八角</p>
-								<small class="text-[14px] text-primary leading-[19px]"
-									>JCharles 雙人床架
-								</small>
-								<p class="col-span-full mt-2">品質不錯～</p>
-							</div>
-						</li>
-						<li class="grid grid-cols-[auto_1fr] bg-white">
-							<img src="./assets/review-6.png" class="object-cover h-full" />
-							<div
-								class="grid grid-rows-[repeat(3,auto)] grid-cols-[auto_1fr] gap-x-2 px-4 py-3"
-							>
-								<img
-									src="./assets/review-user-6.png"
-									alt=""
-									class="rounded-full row-span-2 w-10 h-10"
-								/>
-								<p class="leading-[22px]">juni讚神</p>
-								<small class="text-[14px] text-primary leading-[19px]"
-									>JAntony 床邊桌</small
-								>
-								<p class="col-span-full mt-2">讚ㄉ！</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
+            <section class="bg-primary-extra-dark pt-[3.75rem] pb-20">
+                <div class="container">
+                    <h2
+                        class="mb-8 text-center text-[1.75rem] text-white"
+                        id="reviews"
+                    >
+                        好評推薦
+                    </h2>
+                    <ul class="ml-24 grid grid-cols-3 gap-[30px]">
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-1.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-1.png"
+                                    alt=""
+                                    class="row-span-2 h-10 w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">王六角</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                >
+                                    Jodan 雙人床架
+                                </small>
+                                <p class="col-span-full mt-2">CP值很高。</p>
+                            </div>
+                        </li>
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-2.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-2.png"
+                                    class="row-span-2 h-full w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">Leaf</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                    >Antony 雙人床架</small
+                                >
+                                <p class="col-span-full mt-2">
+                                    很喜歡～還有送三年保固～
+                                </p>
+                            </div>
+                        </li>
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-3.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-3.png"
+                                    alt="美濃鄧子琪"
+                                    class="row-span-2 h-10 w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">美濃鄧子琪</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                    >Charles 系列儲物組合</small
+                                >
+                                <p class="col-span-full mt-2">
+                                    廚房必備美用品！
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mt-5 grid grid-cols-3 gap-[30px]">
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-2.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-4.png"
+                                    alt="小杰"
+                                    class="row-span-2 h-10 w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">小杰</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                    >Louvre 雙人床架
+                                </small>
+                                <p class="col-span-full mt-2">
+                                    非常舒適，有需要會再回購
+                                </p>
+                            </div>
+                        </li>
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-5.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-5.png"
+                                    alt=""
+                                    class="row-span-2 h-10 w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">江八角</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                    >JCharles 雙人床架
+                                </small>
+                                <p class="col-span-full mt-2">品質不錯～</p>
+                            </div>
+                        </li>
+                        <li class="grid grid-cols-[auto_1fr] bg-white">
+                            <img
+                                src="./assets/review-6.png"
+                                class="h-full object-cover"
+                            />
+                            <div
+                                class="grid grid-cols-[auto_1fr] grid-rows-[repeat(3,auto)] gap-x-2 px-4 py-3"
+                            >
+                                <img
+                                    src="./assets/review-user-6.png"
+                                    alt=""
+                                    class="row-span-2 h-10 w-10 rounded-full"
+                                />
+                                <p class="leading-[22px]">juni讚神</p>
+                                <small
+                                    class="text-[14px] leading-[19px] text-primary"
+                                    >JAntony 床邊桌</small
+                                >
+                                <p class="col-span-full mt-2">讚ㄉ！</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-			<section class="container pt-8 pb-[3.75rem]">
-				<h2 class="text-center text-[1.75rem] mb-8" id="delivery">運送方式</h2>
-				<ul class="flex justify-center gap-[25px]">
-					<li class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]">
-						<span
-							class="material-icons text-[3.75rem] border-[3px] rounded-full border-black p-7"
-						>
-							shopping_cart
-						</span>
-						<span class="material-icons text-[2.5rem]"> arrow_right </span>
-						<div class="text-center">
-							<p class="">STEP.1</p>
-							<span>選購商品</span>
-						</div>
-					</li>
-					<li class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]">
-						<span
-							class="material-icons text-[3.75rem] border-[3px] rounded-full border-black p-7"
-						>
-							format_list_bulleted
-						</span>
-						<span class="material-icons text-[2.5rem]"> arrow_right </span>
-						<div class="text-center">
-							<p class="">STEP.2</p>
-							<span>填寫預定資料</span>
-						</div>
-					</li>
-					<li class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]">
-						<span
-							class="material-icons text-[3.75rem] border-[3px] rounded-full border-black p-7"
-						>
-							done
-						</span>
-						<span class="material-icons text-[2.5rem]"> arrow_right </span>
-						<div class="text-center">
-							<p class="">STEP.3</p>
-							<span>預定成功</span>
-						</div>
-					</li>
-					<li class="space-y-2">
-						<span
-							class="material-icons text-[3.75rem] border-[3px] rounded-full border-black p-7"
-						>
-							email
-						</span>
-						<div class="text-center">
-							<p class="">STEP.4</p>
-							<span>Email 付款資訊</span>
-						</div>
-					</li>
-				</ul>
+            <section class="container pt-8 pb-[3.75rem]">
+                <h2 class="mb-8 text-center text-[1.75rem]" id="delivery">
+                    運送方式
+                </h2>
+                <ul class="flex justify-center gap-[25px]">
+                    <li
+                        class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]"
+                    >
+                        <span
+                            class="material-icons rounded-full border-[3px] border-black p-7 text-[3.75rem]"
+                        >
+                            shopping_cart
+                        </span>
+                        <span class="material-icons text-[2.5rem]">
+                            arrow_right
+                        </span>
+                        <div class="text-center">
+                            <p class="">STEP.1</p>
+                            <span>選購商品</span>
+                        </div>
+                    </li>
+                    <li
+                        class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]"
+                    >
+                        <span
+                            class="material-icons rounded-full border-[3px] border-black p-7 text-[3.75rem]"
+                        >
+                            format_list_bulleted
+                        </span>
+                        <span class="material-icons text-[2.5rem]">
+                            arrow_right
+                        </span>
+                        <div class="text-center">
+                            <p class="">STEP.2</p>
+                            <span>填寫預定資料</span>
+                        </div>
+                    </li>
+                    <li
+                        class="grid grid-cols-[auto_auto] items-center gap-y-2 gap-x-[25px]"
+                    >
+                        <span
+                            class="material-icons rounded-full border-[3px] border-black p-7 text-[3.75rem]"
+                        >
+                            done
+                        </span>
+                        <span class="material-icons text-[2.5rem]">
+                            arrow_right
+                        </span>
+                        <div class="text-center">
+                            <p class="">STEP.3</p>
+                            <span>預定成功</span>
+                        </div>
+                    </li>
+                    <li class="space-y-2">
+                        <span
+                            class="material-icons rounded-full border-[3px] border-black p-7 text-[3.75rem]"
+                        >
+                            email
+                        </span>
+                        <div class="text-center">
+                            <p class="">STEP.4</p>
+                            <span>Email 付款資訊</span>
+                        </div>
+                    </li>
+                </ul>
 
-				<!-- product list and filter -->
-				<div class="mt-[4.5rem]">
-					<select
-						name="products-list"
-						id="products-filter-select"
-						class="min-w-[255px] py-2 px-3 bg-transparent border border-[#CED4DA] rounded-[.25rem] text-base"
-					>
-						<option value="全部">全部</option>
-						<option value="床架">床架</option>
-						<option value="收納">收納</option>
-						<option value="窗簾">窗簾</option>
-					</select>
-					<ul class="mt-8 grid grid-cols-4 gap-x-[30px] gap-y-9" id="products-list"></ul>
-				</div>
-			</section>
+                <!-- product list and filter -->
+                <div class="mt-[4.5rem]">
+                    <select
+                        name="products-list"
+                        id="products-filter-select"
+                        class="min-w-[255px] rounded-[.25rem] border border-[#CED4DA] bg-transparent py-2 px-3 text-base"
+                    >
+                        <option value="全部">全部</option>
+                        <option value="床架">床架</option>
+                        <option value="收納">收納</option>
+                        <option value="窗簾">窗簾</option>
+                    </select>
+                    <ul
+                        class="mt-8 grid grid-cols-4 gap-x-[30px] gap-y-9"
+                        id="products-list"
+                    ></ul>
+                </div>
+            </section>
 
-			<section class="bg-[#F8F8F8] pt-12 pb-[70px]">
-				<div class="container">
-					<h2 class="text-center text-[1.75rem] mb-8">我的購物車</h2>
-					<div class="max-w-[920px] mx-auto">
-						<table class="w-full [&:first-child_tr_td]:pb-5">
-							<thead id="cart-header">
-								<tr>
-									<td>品項</td>
-									<td></td>
-									<td>單價</td>
-									<td>數量</td>
-									<td>金額</td>
-									<td></td>
-								</tr>
-							</thead>
-							<tbody id="cart-list">
-								<tr>
-									<td width="300">
-										<img src="./assets/review-2.png" class="inline-block" />
-										<p class="w-[14ch] inline-block align-middle ml-4">
-											Antony 雙人床架／雙人加大
-										</p>
-									</td>
-									<td></td>
-									<td><p>NT$12,000</p></td>
-									<td><p>1</p></td>
-									<td><p>NT$12,000</p></td>
-									<td>
-										<button type="button" class="material-icons">clear</button>
-									</td>
-								</tr>
-								<tr>
-									<td width="300">
-										<img src="./assets/review-2.png" class="inline-block" />
-										<p class="w-[14ch] inline-block align-middle ml-4">
-											Antony 雙人床架／雙人加大
-										</p>
-									</td>
-									<td></td>
-									<td><p>NT$12,000</p></td>
-									<td><p>1</p></td>
-									<td><p>NT$12,000</p></td>
-									<td>
-										<button type="button" class="material-icons">clear</button>
-									</td>
-								</tr>
-								<tr>
-									<td width="300">
-										<img src="./assets/review-2.png" class="inline-block" />
-										<p class="w-[14ch] inline-block align-middle ml-4">
-											Antony 雙人床架／雙人加大
-										</p>
-									</td>
-									<td></td>
-									<td><p>NT$12,000</p></td>
-									<td><p>1</p></td>
-									<td><p>NT$12,000</p></td>
-									<td>
-										<button type="button" class="material-icons">clear</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="flex justify-between mt-5" id="cart-list-bottom">
-							<button
-								type="button"
-								class="border border-black rounded-[.25rem] py-2.5 px-5 hover:bg-black hover:text-white transition-colors"
-							>
-								刪除所有品項
-							</button>
-							<div class="flex gap-14 items-center">
-								<p>總金額</p>
-								<strong class="text-[1.75rem]" id="cart-list-total-price"
-									>NT$13,980</strong
-								>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+            <section class="bg-[#F8F8F8] pt-12 pb-[70px]">
+                <div class="container">
+                    <h2 class="mb-8 text-center text-[1.75rem]">我的購物車</h2>
+                    <div class="mx-auto max-w-[920px]">
+                        <table class="w-full [&:first-child_tr_td]:pb-5">
+                            <thead id="cart-header">
+                                <tr>
+                                    <td>品項</td>
+                                    <td></td>
+                                    <td>單價</td>
+                                    <td>數量</td>
+                                    <td>金額</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-list"></tbody>
+                        </table>
+                        <div
+                            class="mt-5 flex justify-between"
+                            id="cart-list-bottom"
+                        >
+                            <button
+                                type="button"
+                                class="rounded-[.25rem] border border-black py-2.5 px-5 transition-colors hover:bg-black hover:text-white"
+                            >
+                                刪除所有品項
+                            </button>
+                            <div class="flex items-center gap-14">
+                                <p>總金額</p>
+                                <strong
+                                    class="text-[1.75rem]"
+                                    id="cart-list-total-price"
+                                    >NT$13,980</strong
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-			<section class="pt-[3.75rem] pb-20">
-				<h2 class="text-[1.75rem] mb-8 text-center" id="place-order">填寫預訂資料</h2>
+            <section class="pt-[3.75rem] pb-20">
+                <h2 class="mb-8 text-center text-[1.75rem]" id="place-order">
+                    填寫預訂資料
+                </h2>
 
-				<form
-					class="max-w-[350px] [&>:not(:last-child)]:mb-5 mx-auto text-base"
-					id="pre-order"
-				>
-					<div class="flex flex-col gap-1.5">
-						<label for="name" class="text-base">姓名</label>
-						<div class="relative">
-							<input
-								type="text"
-								id="name"
-								name="name"
-								placeholder="請輸入姓名"
-								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full"
-							/>
-							<span
-								class="text-danger hidden absolute -translate-y-1/2 top-1/2 translate-x-[calc(100%+.5rem)] right-0"
-							>
-								必填！
-							</span>
-						</div>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label for="tel" class="text-base">電話</label>
-						<div class="relative">
-							<input
-								type="tel"
-								id="tel"
-								name="tel"
-								placeholder="請輸入電話"
-								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full appearance-none [-moz-appearance:textfield]"
-							/>
-							<span
-								class="text-danger hidden absolute -translate-y-1/2 top-1/2 translate-x-[calc(100%+.5rem)] right-0"
-							>
-								必填！
-							</span>
-						</div>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label for="email" class="text-base">Email</label>
-						<div class="relative">
-							<input
-								type="email"
-								id="email"
-								name="email"
-								placeholder="請輸入Email"
-								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full"
-							/>
-							<span
-								class="text-danger hidden absolute -translate-y-1/2 top-1/2 translate-x-[calc(100%+.5rem)] right-0"
-								>必填！
-							</span>
-						</div>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label for="address" class="text-base">寄送地址</label>
-						<div class="relative">
-							<input
-								type="text"
-								id="address"
-								name="address"
-								placeholder="請輸入寄送地址"
-								class="border placeholder-[#818A91] border-[#CED4DA] rounded-[.25rem] py-2 px-3 outline-none w-full"
-							/>
-							<span
-								class="text-danger hidden absolute -translate-y-1/2 top-1/2 translate-x-[calc(100%+.5rem)] right-0"
-							>
-								必填！
-							</span>
-						</div>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label for="payment-method" class="text-base">交易方式</label>
-						<div class="relative">
-							<select
-								name="payment"
-								id="payment"
-								class="w-full py-2 px-3 bg-transparent text-[#818A91] border border-[#CED4DA]"
-							>
-								<option value="ATM">ATM</option>
-								<option value="信用卡">信用卡</option>
-								<option value="超商付款">超商付款</option>
-							</select>
-						</div>
-					</div>
-					<button
-						type="submit"
-						class="bg-black block hover:bg-primary transition-colors text-white rounded-[.25rem] py-2.5 px-[4.25rem] mx-auto mt-12"
-					>
-						送出預訂資料
-					</button>
-				</form>
-			</section>
-		</main>
+                <form
+                    class="mx-auto max-w-[350px] text-base [&>:not(:last-child)]:mb-5"
+                    id="pre-order"
+                >
+                    <div class="flex flex-col gap-1.5">
+                        <label for="name" class="text-base">姓名</label>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="請輸入姓名"
+                                class="w-full rounded-[.25rem] border border-[#CED4DA] py-2 px-3 placeholder-[#818A91] outline-none"
+                            />
+                            <span
+                                class="absolute top-1/2 right-0 hidden -translate-y-1/2 translate-x-[calc(100%+.5rem)] text-danger"
+                            >
+                                必填！
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="tel" class="text-base">電話</label>
+                        <div class="relative">
+                            <input
+                                type="tel"
+                                id="tel"
+                                name="tel"
+                                placeholder="請輸入電話"
+                                class="w-full appearance-none rounded-[.25rem] border border-[#CED4DA] py-2 px-3 placeholder-[#818A91] outline-none [-moz-appearance:textfield]"
+                            />
+                            <span
+                                class="absolute top-1/2 right-0 hidden -translate-y-1/2 translate-x-[calc(100%+.5rem)] text-danger"
+                            >
+                                必填！
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="email" class="text-base">Email</label>
+                        <div class="relative">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="請輸入Email"
+                                class="w-full rounded-[.25rem] border border-[#CED4DA] py-2 px-3 placeholder-[#818A91] outline-none"
+                            />
+                            <span
+                                class="absolute top-1/2 right-0 hidden -translate-y-1/2 translate-x-[calc(100%+.5rem)] text-danger"
+                                >必填！
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="address" class="text-base">寄送地址</label>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                id="address"
+                                name="address"
+                                placeholder="請輸入寄送地址"
+                                class="w-full rounded-[.25rem] border border-[#CED4DA] py-2 px-3 placeholder-[#818A91] outline-none"
+                            />
+                            <span
+                                class="absolute top-1/2 right-0 hidden -translate-y-1/2 translate-x-[calc(100%+.5rem)] text-danger"
+                            >
+                                必填！
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="payment-method" class="text-base"
+                            >交易方式</label
+                        >
+                        <div class="relative">
+                            <select
+                                name="payment"
+                                id="payment"
+                                class="w-full border border-[#CED4DA] bg-transparent py-2 px-3 text-[#818A91]"
+                            >
+                                <option value="ATM">ATM</option>
+                                <option value="信用卡">信用卡</option>
+                                <option value="超商付款">超商付款</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        class="mx-auto mt-12 block rounded-[.25rem] bg-black py-2.5 px-[4.25rem] text-white transition-colors hover:bg-primary"
+                    >
+                        送出預訂資料
+                    </button>
+                </form>
+            </section>
+        </main>
 
-		<script type="module" src="/main.js"></script>
-	</body>
+        <script type="module" src="/main.js"></script>
+    </body>
 </html>

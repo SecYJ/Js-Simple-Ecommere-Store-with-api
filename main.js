@@ -1,11 +1,8 @@
+import sweetAlert from "sweetalert";
 import "./style.css";
-import {
-    deleteAllCartItem,
-    fetchInitialData,
-    placeOrder,
-    addToCart,
-    deleteCartItem,
-} from "./useFetch";
+import { fetchInitialData, useFetch } from "./useFetch";
+import { showAlert, statusAlert } from "./utils";
+import { render } from "./view";
 
 const placeOrderForm = document.querySelector("#pre-order");
 const productsFilterSelect = document.querySelector("#products-filter-select");
@@ -113,27 +110,9 @@ const cartHTML = (cartsData) => {
     return markup.join("");
 };
 
-const render = (el, htmlMarkup, data) => {
-    const domEl = document.querySelector(el);
-    const markup = htmlMarkup(data);
-    clearMarkup(el);
-    domEl.innerHTML = markup;
-};
-
-const clearMarkup = (el) => (document.querySelector(el).innerHTML = "");
-
 const init = async () => {
-    // try {
-    // 	const [productsData, cartsData] = await Promise.allSettled(
-    // 		urlEndPoints.map((endpoint) => fetchData(endpoint))
-    // 	);
-
-    // 	render("#products-list", productMarkup, productsData.value.products);
-    // } catch (error) {
-    // 	console.error(error);
-    // }
     try {
-        const [productsList, cartList] = await fetchInitialData();
+        const [productsList, cartList] = await fetchInitialData("products");
         state.productsList = productsList;
         state.cartList = cartList;
         render("#products-list", productMarkup, state.productsList);
@@ -157,6 +136,10 @@ productsFilterSelect.addEventListener("change", (e) => {
 
 placeOrderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (state.cartList.length === 0) {
+        showAlert("目前购物车为空", "error");
+        return;
+    }
     const formDetails = new FormData(e.target);
 
     [...formDetails].forEach((input) => {
@@ -173,7 +156,21 @@ placeOrderForm.addEventListener("submit", async (e) => {
     );
     if (!isAllInputsValid) return;
 
-    await placeOrder(Object.fromEntries(formDetails));
+    const { status } = await useFetch({
+        method: "post",
+        url: "/orders",
+        data: { data: { user: Object.fromEntries(formDetails) } },
+    });
+
+    if (status) {
+        sweetAlert({
+            text: "订单成功送出😀",
+            icon: "success",
+        });
+    }
+
+    render("#cart-list", cartHTML, []);
+    state.cartList = [];
     e.target.reset();
 });
 
@@ -187,7 +184,18 @@ productsList.addEventListener("click", async (e) => {
     !isExistInCart
         ? (quantity = 1)
         : (quantity = parseInt(isExistInCart.quantity) + 1);
-    const { carts, finalTotal } = await addToCart({ quantity, productId });
+    // const { carts, finalTotal } = await addToCart({ quantity, productId });
+
+    const { carts, finalTotal, status, total } = await useFetch({
+        method: "post",
+        url: "/carts",
+        data: {
+            data: { quantity, productId },
+        },
+    });
+
+    // statusAlert({ status, text: "加入购物车成功"})
+
     state.cartList = carts;
     render("#cart-list", cartHTML, state.cartList);
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
@@ -195,19 +203,31 @@ productsList.addEventListener("click", async (e) => {
 
 cartList.addEventListener("click", async (e) => {
     if (e.target.nodeName !== "BUTTON") return;
-    const { carts, finalTotal } = await deleteCartItem(e.target.dataset.id);
+    const { carts, finalTotal, total, status } = await useFetch({
+        method: "delete",
+        url: `/carts/${e.target.dataset.id}`,
+    });
+
     state.cartList = carts;
-    render("#cart-list", cartHTML, state.cartList);
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
+    statusAlert({ status, text: "删除成功", icon: "warning" });
+    render("#cart-list", cartHTML, state.cartList);
 });
 
 cartListBottom.addEventListener("click", async (e) => {
     if (e.target.nodeName !== "BUTTON") return;
-    const { carts, message, finalTotal } = await deleteAllCartItem();
+    const {
+        carts,
+        finalTotal,
+        message: text,
+        status,
+        total,
+    } = await useFetch({ method: "delete", url: "/carts" });
+
     state.cartList = carts;
-    render("#cart-list", cartHTML, state.cartList);
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
-    alert(message);
+    statusAlert({ status, text, icon: "warning" });
+    render("#cart-list", cartHTML, state.cartList);
 });
 
 init();

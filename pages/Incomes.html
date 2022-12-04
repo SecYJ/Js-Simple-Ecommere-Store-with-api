@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css"
+            integrity="sha512-cznfNokevSG7QPA5dZepud8taylLdvgr0lDqw/FEZIhluFsSwyvS81CMnRdrNSKwbsmc43LtRd2/WMQV+Z85AQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.css"
+        />
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"
+        ></script>
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"
+        ></script>
+        <script type="module" src="../incomes.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <header class="flex items-center justify-between py-9">
+                <a href="./index.html" class="text-[1.5rem] font-bold"
+                    >WOWOROOM</a
+                >
+                <ul class="flex gap-12">
+                    <li>
+                        <a
+                            href="#mattress-advantage"
+                            class="border-b border-b-transparent hover:border-b-primary"
+                            >後台管理</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#place-order" class="text-primary"
+                            >管理員登入</a
+                        >
+                    </li>
+                </ul>
+            </header>
+
+            <!-- black bar -->
+            <div class="mb-[3.75rem] h-10 bg-black"></div>
+            <h1 class="mb-24 text-center text-[1.75rem]" id="title"></h1>
+
+            <div id="chart" class="mb-16"></div>
+
+            <div class="flex justify-end gap-8" id="function-bar">
+                <button
+                    type="button"
+                    class="rounded-[.25rem] border border-black py-2.5 px-5 text-right transition-colors hover:bg-black hover:text-white"
+                    id="toggle-chart"
+                >
+                    品項
+                </button>
+                <button
+                    type="button"
+                    class="rounded-[.25rem] border border-black py-2.5 px-5 text-right transition-colors hover:bg-black hover:text-white"
+                    id="clear-cart"
+                >
+                    清除全部訂單
+                </button>
+            </div>
+            <table class="mt-8 w-full" id="order-table">
+                <thead>
+                    <tr>
+                        <td>訂單編號</td>
+                        <td>聯絡人</td>
+                        <td>聯絡地址</td>
+                        <td>電子郵件</td>
+                        <td>訂單品項</td>
+                        <td>訂單日期</td>
+                        <td>訂單狀態</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="order-list">
+                    <tr>
+                        <td>10088377474</td>
+                        <td>小杰 0912345678</td>
+                        <td>高雄市前鎮區六合路183巷66號</td>
+                        <td>cccexample@gmail.com</td>
+                        <td>Louvre 雙人床架</td>
+                        <td>2021/03/08</td>
+                        <td>
+                            <a
+                                href="#"
+                                class="block w-max text-[#0067c2] underline"
+                            >
+                                未處理
+                            </a>
+                        </td>
+                        <td>
+                            <button
+                                type="button"
+                                class="w-max bg-danger p-3 text-white hover:bg-danger/80"
+                            >
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="hidden text-center text-2xl" id="no-order-msg">
+                目前没有任何订单
+            </h2>
+        </div>
+    </body>
+</html>

@@ -1,14 +1,10 @@
 import axios from "axios";
-import { urlEndPoints, ADMIN_TOKEN, ADMIN_URL } from "./helpers";
+import { urlEndPoints, ADMIN_TOKEN, ADMIN_URL, CUSTOMER_URL } from "./helpers";
 
 const instance = axios.create({
     baseURL:
         "https://livejs-api.hexschool.io/api/livejs/v1/customer/sentiments",
 });
-
-// const switchToAdmin = () => {
-
-// }
 
 export const fetchInitialData = async () => {
     const controller = new AbortController();
@@ -37,90 +33,27 @@ export const fetchInitialData = async () => {
         });
     } catch (error) {
         if (controller.error) return "Request aborted!";
-        console.log(error);
+        return "Something went wrong please try again later!";
     }
 };
 
-export const placeOrder = async (formEl) => {
-    const data = await instance.post("orders", {
-        data: {
-            user: formEl,
-        },
-    });
-    console.log(data);
-};
+export const useFetch = async (args = {}, isAdmin = false) => {
+    const controller = new AbortController();
 
-export const addToCart = async (productInfo) => {
     try {
-        // const { finalTotal, carts } = await instance.post("carts", { data: productInfo });
-        const data = await instance.post("carts", { data: productInfo });
-        const { finalTotal, carts, status } = data.data;
-        return { finalTotal, carts };
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const deleteCartItem = async (id) => {
-    try {
-        const data = await instance.delete(`carts/${id}`);
-        const { finalTotal, carts, status } = data.data;
-        console.log(data);
-        return { finalTotal, carts };
-        // return d
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const deleteAllCartItem = async () => {
-    try {
-        const data = await instance.delete("carts");
-        const { carts, finalTotal, message } = data.data;
-        console.log(data);
-        return { carts, finalTotal, message };
-    } catch (error) {
-        console.error();
-    }
-};
-
-export const getOrders = async () => {
-    try {
-        const data = await instance.get("orders", {
-            headers: { authorization: ADMIN_TOKEN },
-            baseURL: ADMIN_URL,
-        });
-        const { orders } = data.data;
-        return orders;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const updateOrderStatus = async (id, paid) => {
-    try {
-        const data = await instance.put("orders", {
+        const data = await axios.request({
+            baseURL: isAdmin ? ADMIN_URL : CUSTOMER_URL,
+            url: typeof args === "string" && args,
             headers: {
-                authorization: ADMIN_TOKEN,
-                "content-type": "application/json",
+                authorization: isAdmin && ADMIN_TOKEN,
             },
-            baseURL: ADMIN_URL,
-            data: {
-                id,
-                paid,
-            },
+            signal: controller.signal,
+            ...args,
         });
-        console.log(data);
-    } catch (error) {}
-};
 
-export const clearCart = async () => {
-    try {
-        const data = await instance.delete("order", {
-            headers: { authorization: ADMIN_TOKEN },
-        });
-        console.log(data);
+        return data.data;
     } catch (error) {
-        console.error(error);
+        if (controller.error) return "Request aborted!";
+        return "Something went wrong please try again later!";
     }
 };
