@@ -19,7 +19,7 @@ export const renderChart = (data) => {
             type: "pie",
         },
         color: {
-            pattern: ["#dacbff", "#9D7FEA", "#5434A7"],
+            pattern: ["#dacbff", "#9D7FEA", "#5434A7", "#301e5f"],
         },
     });
 };

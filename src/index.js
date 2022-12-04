@@ -1,5 +1,5 @@
 import sweetAlert from "sweetalert";
-import "./style.css";
+import "../style.css";
 import { fetchInitialData, useFetch } from "./useFetch";
 import { showAlert, statusAlert } from "./utils";
 import { render } from "./view";

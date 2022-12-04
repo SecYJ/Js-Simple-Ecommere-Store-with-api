@@ -1,15 +1,15 @@
-import { initialData } from "./useFetch";
+import { initialData } from "./src/useFetch";
 
 export let state = {
-	products: [],
-	cart: [],
+    products: [],
+    cart: [],
 };
 
 export const getInitialData = async (endpoints) => {
-	try {
-		const [products, cart] = await initialData(endpoints);
-		state = { ...state, products, cart };
-	} catch (error) {
-		throw new Error(error);
-	}
+    try {
+        const [products, cart] = await initialData(endpoints);
+        state = { ...state, products, cart };
+    } catch (error) {
+        throw new Error(error);
+    }
 };

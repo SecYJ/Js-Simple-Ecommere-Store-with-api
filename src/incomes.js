@@ -1,6 +1,6 @@
 import { render, renderChart } from "./view";
 import { useFetch } from "./useFetch";
-import "./style.css";
+import "../style.css";
 import { arrayPair, statusAlert } from "./utils";
 import useChart from "./useChart";
 
