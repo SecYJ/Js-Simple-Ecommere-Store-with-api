@@ -14,7 +14,6 @@ export const renderChart = (data) => {
     c3.generate({
         bindto: "#chart",
         data: {
-            // columns: [...data],
             columns: data,
             type: "pie",
         },

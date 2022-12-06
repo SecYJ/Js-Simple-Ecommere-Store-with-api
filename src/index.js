@@ -1,7 +1,6 @@
-import sweetAlert from "sweetalert";
 import "../style.css";
 import { fetchInitialData, useFetch } from "./useFetch";
-import { showAlert, statusAlert } from "./utils";
+import { formValidation, showAlert, statusAlert } from "./utils";
 import { render } from "./view";
 
 const placeOrderForm = document.querySelector("#pre-order");
@@ -136,6 +135,27 @@ productsFilterSelect.addEventListener("change", (e) => {
 
 placeOrderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    [...e.target].forEach((input) => {
+        if (input.localName !== "input") return;
+        // input.nextElementSibling.classList.add("hidden");
+        input.nextElementSibling.textContent = "";
+    });
+    const validationResult = formValidation(e.target);
+    console.log(validationResult);
+    if (validationResult?.length) {
+        validationResult.forEach((item) => {
+            const [name, errorMsg] = item;
+            const nextEl = e.target[name].nextElementSibling;
+            if (errorMsg.length === 1) {
+                nextEl.textContent = errorMsg[0];
+                return;
+            }
+            nextEl.textContent = errorMsg.join(", ");
+        });
+        return;
+    }
+
+    formValidation(document.querySelector("#tel"));
     if (state.cartList.length === 0) {
         showAlert("目前购物车为空", "error");
         return;

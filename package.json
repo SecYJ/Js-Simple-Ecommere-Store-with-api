@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "axios": "^1.2.0",
-        "sweetalert": "^2.1.2"
+        "sweetalert": "^2.1.2",
+        "validate.js": "^0.13.1"
     }
 }
