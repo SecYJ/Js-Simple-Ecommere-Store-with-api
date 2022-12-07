@@ -1,64 +1,30 @@
-import sweetAlert from "sweetalert";
-import { validate } from "validate.js";
-
-export const showAlert = (text, icon) => sweetAlert({ text, icon });
-
-export const statusAlert = (args) => {
-    const { text, icon, status } = args;
-    if (status) showAlert(text, icon);
-};
-
 export const arrayPair = (arr) => {
     return arr.reduce((accumulator, { products }) => {
         return [...accumulator, ...products];
     }, []);
 };
 
-export const formValidation = (formEl) => {
-    const constraints = {
-        name: {
-            presence: {
-                message: "姓名栏位不得为空",
-            },
-            // format: {
-            //     pattern: "[a-z0-9]+",
-            //     flags: "i",
-            //     message: "请确认名称符合 a-z, 0-9",
-            // },
-        },
+export const render = (el, markup, data) => {
+    const element = document.querySelector(el);
+    element.innerHTML = "";
+    const htmlMarkup = markup(data);
+    element.innerHTML = htmlMarkup;
+};
 
-        tel: {
-            presence: {
-                message: "电话栏位不得为空",
-            },
-            format: {
-                pattern: "[0-9]+",
-                flags: "i",
-                message: "电话号码必须为 0-9",
-            },
-            length: {
-                minimum: 10,
-                maximum: 11,
-                tooShort: "电话号码最短长度为%{count}个号码",
-                tooLong: "电话号码最大长度为%{count}个号码",
-            },
-        },
-        email: {
-            presence: {
-                message: "邮箱栏位不得为空",
-            },
-            email: {
-                message: "请确保邮箱格式正确",
-            },
-        },
-        address: {
-            presence: {
-                message: "地址栏位不得为空",
-            },
-        },
-    };
+export const renderChart = (data) => {
+    if (data.length === 0) {
+        document.querySelector("#chart").innerHTML = "";
+        return;
+    }
 
-    const results = validate(formEl, constraints);
-
-    return results ? Object.entries(results) : results;
+    c3.generate({
+        bindto: "#chart",
+        data: {
+            columns: data,
+            type: "pie",
+        },
+        color: {
+            pattern: ["#dacbff", "#9D7FEA", "#5434A7", "#301e5f"],
+        },
+    });
 };

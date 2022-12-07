@@ -1,8 +1,8 @@
-import { render, renderChart } from "./view";
-import { useFetch } from "./useFetch";
+import { render, renderChart, arrayPair } from "./utils";
+import useFetch from "./hooks/useFetch";
+import useChart from "./hooks/useChart";
+import useModal from "./hooks/useModal";
 import "../style.css";
-import { arrayPair, statusAlert } from "./utils";
-import useChart from "./useChart";
 
 const orderList = document.querySelector("#order-list");
 const clearCartBtn = document.querySelector("#clear-cart");
@@ -15,6 +15,8 @@ const state = {
     chartData: [],
     chartType: "category",
 };
+
+const renderOrderList = (data) => render("#order-list", markup, data);
 
 const markup = (data) => {
     return data
@@ -55,9 +57,9 @@ const markup = (data) => {
                     >
                         删除
                     </button>
-                </td>
-            </tr>
-        `;
+                    </td>
+                    </tr>
+                    `;
         })
         .join("");
 };
@@ -79,9 +81,7 @@ const fetchCustomersOrder = async () => {
     functionBar.classList.remove("hidden");
     title.textContent = "全產品類別營收比重";
 
-    const customerOrderProducts = orders.reduce((accumulator, { products }) => {
-        return [...accumulator, ...products];
-    }, []);
+    const customerOrderProducts = arrayPair(orders);
 
     state.chartData = customerOrderProducts;
     renderChart(useChart(customerOrderProducts));
@@ -91,6 +91,14 @@ const fetchCustomersOrder = async () => {
 orderList.addEventListener("click", async (e) => {
     if (e.target.classList.contains("update-paid")) {
         e.preventDefault();
+        const result = await useModal({
+            type: "decision",
+            icon: "warning",
+            text: "是否修改订单状态?",
+        });
+
+        if (!result) return;
+
         const { id, paid } = e.target.dataset;
         const config = {
             method: "put",
@@ -99,33 +107,47 @@ orderList.addEventListener("click", async (e) => {
                 data: { id, paid: paid === "true" ? false : true },
             },
         };
-        const { status, orders } = await useFetch(config, true);
-        statusAlert({ status, text: "订单状态已更新", icon: "success" });
+        const { orders } = await useFetch(config, true);
         renderOrderList(orders);
+        useModal({ text: "订单状态已更新" });
     }
 
     if (e.target.classList.contains("delete-order")) {
+        const result = await useModal({
+            type: "decision",
+            text: `确定删除 id 为${e.target.dataset.id}的订单?`,
+            icon: "warning",
+        });
+        if (!result) return;
+
         const config = {
             url: `/orders/${e.target.dataset.id}`,
             method: "delete",
         };
 
-        const { status, orders } = await useFetch(config, true);
+        const { orders } = await useFetch(config, true);
         const data = arrayPair(orders);
         state.chartData = data;
         if (orders.length === 0) initialDOM();
         renderChart(useChart(data, state.chartType));
         renderOrderList(orders);
-        statusAlert({ status, text: "删除成功", icon: "error" });
+        useModal({ text: "删除成功" });
     }
 });
 
 clearCartBtn.addEventListener("click", async () => {
+    const result = await useModal({
+        type: "decision",
+        text: "确定删除所有订单?",
+        icon: "warning",
+    });
+
+    if (!result) return;
     const config = { method: "delete", url: "/orders" };
     const { status, orders, message: text } = await useFetch(config, true);
     if (status) initialDOM();
-    statusAlert({ text, status });
     renderChart(orders);
+    useModal({ text });
 });
 
 toggleChartBtn.addEventListener("click", (e) => {
@@ -134,7 +156,5 @@ toggleChartBtn.addEventListener("click", (e) => {
     e.target.textContent = chartType === "category" ? "品項" : "类别";
     renderChart(useChart(data, state.chartType));
 });
-
-const renderOrderList = (data) => render("#order-list", markup, data);
 
 fetchCustomersOrder();

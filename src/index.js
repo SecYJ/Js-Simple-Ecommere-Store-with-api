@@ -1,7 +1,8 @@
+import useModal from "./hooks/useModal";
+import useFormValidation from "./hooks/useFormValidation";
+import useFetch, { fetchInitialData } from "./hooks/useFetch";
+import { render } from "./utils";
 import "../style.css";
-import { fetchInitialData, useFetch } from "./useFetch";
-import { formValidation, showAlert, statusAlert } from "./utils";
-import { render } from "./view";
 
 const placeOrderForm = document.querySelector("#pre-order");
 const productsFilterSelect = document.querySelector("#products-filter-select");
@@ -25,6 +26,7 @@ const productMarkup = (productsData) => {
         .map((product) => {
             const { origin_price, price, title, images, category, id } =
                 product;
+
             return `
                 <li class="relative">
                     <div class="absolute top-2 py-2 px-6 bg-black text-white right-0">
@@ -45,32 +47,11 @@ const productMarkup = (productsData) => {
                     </div>
                 </li>            
             `;
-            // return `
-            //     <li class="relative flex flex-col">
-            //         <div class="absolute top-2 py-2 px-6 bg-black text-white right-0">
-            //             ${category}
-            //         </div>
-            //         <div>
-            //             <img src=${images} alt="" class="h-full w-full" />
-            //             <button
-            //                 type="button"
-            //                 class="bg-black text-white w-full py-3 hover:bg-black/80 transition-colors"
-            //             >
-            //                 加入購物車
-            //             </button>
-            //         </div>
-            //         <div class="mt-2 grow grid grid-rows-[1fr_auto_auto]">
-            //             <h3 class="mb-2">${title}</h3>
-            //             <p class="line-through">NT$${origin_price}</p>
-            //             <strong class="text-[1.75rem]">NT$${price}</strong>
-            //         </div>
-            //     </li>
-            // `;
         })
         .join("");
 };
 
-const cartHTML = (cartsData) => {
+const cartMarkup = (cartsData) => {
     const cartListBottom = document.querySelector("#cart-list-bottom");
     if (cartsData.length === 0) {
         cartHeader.classList.add("hidden");
@@ -79,9 +60,13 @@ const cartHTML = (cartsData) => {
         return `<td class="text-center">当前购物列表为空!</td>`;
     }
 
+    let totalPrice = 0;
+
     const markup = cartsData.map((cart) => {
-        const { id: productId, images, price, title } = cart.product;
+        const { images, price, title } = cart.product;
         const { id: cartProductId, quantity } = cart;
+
+        totalPrice += quantity * price;
 
         return `
             <tr>
@@ -102,6 +87,7 @@ const cartHTML = (cartsData) => {
       `;
     });
 
+    cartListTotalPrice.textContent = `NT$${totalPrice}`;
     cartHeader.classList.remove("hidden");
     cartListBottom.classList.remove("hidden");
     cartListBottom.classList.add("flex");
@@ -115,9 +101,9 @@ const init = async () => {
         state.productsList = productsList;
         state.cartList = cartList;
         render("#products-list", productMarkup, state.productsList);
-        render("#cart-list", cartHTML, state.cartList);
+        render("#cart-list", cartMarkup, state.cartList);
     } catch (error) {
-        console.error(error);
+        useModal({ text: error, icon: "error" });
     }
 };
 
@@ -135,13 +121,18 @@ productsFilterSelect.addEventListener("change", (e) => {
 
 placeOrderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (state.cartList.length === 0) {
+        useModal({ text: "目前购物车为空", icon: "error" });
+        return;
+    }
+
     [...e.target].forEach((input) => {
         if (input.localName !== "input") return;
-        // input.nextElementSibling.classList.add("hidden");
         input.nextElementSibling.textContent = "";
     });
-    const validationResult = formValidation(e.target);
-    console.log(validationResult);
+
+    const validationResult = useFormValidation(e.target);
     if (validationResult?.length) {
         validationResult.forEach((item) => {
             const [name, errorMsg] = item;
@@ -155,42 +146,16 @@ placeOrderForm.addEventListener("submit", async (e) => {
         return;
     }
 
-    formValidation(document.querySelector("#tel"));
-    if (state.cartList.length === 0) {
-        showAlert("目前购物车为空", "error");
-        return;
-    }
-    const formDetails = new FormData(e.target);
-
-    [...formDetails].forEach((input) => {
-        const [key, val] = input;
-        if (key === "payment") return;
-
-        const nextSibling = e.target[key].nextElementSibling.classList;
-        if (val.trim() === "") nextSibling.remove("hidden");
-        else nextSibling.add("hidden");
-    });
-
-    const isAllInputsValid = [...formDetails].every(
-        ([, val]) => val.trim() !== ""
-    );
-    if (!isAllInputsValid) return;
-
     const { status } = await useFetch({
         method: "post",
         url: "/orders",
-        data: { data: { user: Object.fromEntries(formDetails) } },
+        data: { data: { user: Object.fromEntries(new FormData(e.target)) } },
     });
 
-    if (status) {
-        sweetAlert({
-            text: "订单成功送出😀",
-            icon: "success",
-        });
-    }
+    if (status) useModal({ text: "订单成功送出😀" });
 
-    render("#cart-list", cartHTML, []);
     state.cartList = [];
+    render("#cart-list", cartMarkup, []);
     e.target.reset();
 });
 
@@ -204,9 +169,8 @@ productsList.addEventListener("click", async (e) => {
     !isExistInCart
         ? (quantity = 1)
         : (quantity = parseInt(isExistInCart.quantity) + 1);
-    // const { carts, finalTotal } = await addToCart({ quantity, productId });
 
-    const { carts, finalTotal, status, total } = await useFetch({
+    const { carts, finalTotal } = await useFetch({
         method: "post",
         url: "/carts",
         data: {
@@ -214,40 +178,43 @@ productsList.addEventListener("click", async (e) => {
         },
     });
 
-    // statusAlert({ status, text: "加入购物车成功"})
-
     state.cartList = carts;
-    render("#cart-list", cartHTML, state.cartList);
+    render("#cart-list", cartMarkup, state.cartList);
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
 });
 
 cartList.addEventListener("click", async (e) => {
     if (e.target.nodeName !== "BUTTON") return;
-    const { carts, finalTotal, total, status } = await useFetch({
+    const { carts, finalTotal } = await useFetch({
         method: "delete",
         url: `/carts/${e.target.dataset.id}`,
     });
 
     state.cartList = carts;
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
-    statusAlert({ status, text: "删除成功", icon: "warning" });
-    render("#cart-list", cartHTML, state.cartList);
+    render("#cart-list", cartMarkup, state.cartList);
+    useModal({ text: "删除成功" });
 });
 
 cartListBottom.addEventListener("click", async (e) => {
     if (e.target.nodeName !== "BUTTON") return;
+    const result = await useModal({
+        type: "decision",
+        text: "确定删除购物车内所有商品?",
+        icon: "warning",
+    });
+    if (!result) return;
+
     const {
         carts,
         finalTotal,
         message: text,
-        status,
-        total,
     } = await useFetch({ method: "delete", url: "/carts" });
 
     state.cartList = carts;
     cartListTotalPrice.textContent = `NT$${finalTotal}`;
-    statusAlert({ status, text, icon: "warning" });
-    render("#cart-list", cartHTML, state.cartList);
+    render("#cart-list", cartMarkup, state.cartList);
+    useModal({ text });
 });
 
 init();

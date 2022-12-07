@@ -1,10 +1,5 @@
 import axios from "axios";
-import { urlEndPoints, ADMIN_TOKEN, ADMIN_URL, CUSTOMER_URL } from "./helpers";
-
-const instance = axios.create({
-    baseURL:
-        "https://livejs-api.hexschool.io/api/livejs/v1/customer/sentiments",
-});
+import { urlEndPoints, ADMIN_TOKEN, ADMIN_URL, CUSTOMER_URL } from "../helpers";
 
 export const fetchInitialData = async () => {
     const controller = new AbortController();
@@ -37,7 +32,7 @@ export const fetchInitialData = async () => {
     }
 };
 
-export const useFetch = async (args = {}, isAdmin = false) => {
+const useFetch = async (args = {}, isAdmin = false) => {
     const controller = new AbortController();
 
     try {
@@ -57,3 +52,5 @@ export const useFetch = async (args = {}, isAdmin = false) => {
         return "Something went wrong please try again later!";
     }
 };
+
+export default useFetch;
