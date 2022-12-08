@@ -1,8 +1,8 @@
 import useModal from "./hooks/useModal";
 import useFormValidation from "./hooks/useFormValidation";
-import useFetch, { fetchInitialData } from "./hooks/useFetch";
-import { render } from "./utils";
-import "../style.css";
+import useFetch from "./hooks/useFetch";
+import { render, thousands } from "./utils";
+import { urlEndPoints } from "./helpers";
 
 const placeOrderForm = document.querySelector("#pre-order");
 const productsFilterSelect = document.querySelector("#products-filter-select");
@@ -42,8 +42,12 @@ const productMarkup = (productsData) => {
                     </button>
                     <div class="mt-2">
                         <h3 class="mb-2">${title}</h3>
-                        <p class="line-through">NT$${origin_price}</p>
-                        <strong class="text-[1.75rem]">NT$${price}</strong>
+                        <p class="line-through">NT$${thousands(
+                            origin_price
+                        )}</p>
+                        <strong class="text-[1.75rem]">NT$${thousands(
+                            price
+                        )}</strong>
                     </div>
                 </li>            
             `;
@@ -77,9 +81,9 @@ const cartMarkup = (cartsData) => {
                     </p>
                 </td>
                 <td></td>
-                <td><p>NT$${price}</p></td>
+                <td><p>NT$${thousands(price)}</p></td>
                 <td><p>${quantity}</p></td>
-                <td><p>NT$${quantity * price}</p></td>
+                <td><p>NT$${thousands(quantity * price)}</p></td>
                 <td>
                     <button type="button" class="material-icons" data-id=${cartProductId}>clear</button>
                 </td>
@@ -87,24 +91,12 @@ const cartMarkup = (cartsData) => {
       `;
     });
 
-    cartListTotalPrice.textContent = `NT$${totalPrice}`;
+    cartListTotalPrice.textContent = `NT$${thousands(totalPrice)}`;
     cartHeader.classList.remove("hidden");
     cartListBottom.classList.remove("hidden");
     cartListBottom.classList.add("flex");
 
     return markup.join("");
-};
-
-const init = async () => {
-    try {
-        const [productsList, cartList] = await fetchInitialData("products");
-        state.productsList = productsList;
-        state.cartList = cartList;
-        render("#products-list", productMarkup, state.productsList);
-        render("#cart-list", cartMarkup, state.cartList);
-    } catch (error) {
-        useModal({ text: error, icon: "error" });
-    }
 };
 
 productsFilterSelect.addEventListener("change", (e) => {
@@ -180,7 +172,7 @@ productsList.addEventListener("click", async (e) => {
 
     state.cartList = carts;
     render("#cart-list", cartMarkup, state.cartList);
-    cartListTotalPrice.textContent = `NT$${finalTotal}`;
+    cartListTotalPrice.textContent = `NT$${thousands(finalTotal)}`;
 });
 
 cartList.addEventListener("click", async (e) => {
@@ -191,7 +183,7 @@ cartList.addEventListener("click", async (e) => {
     });
 
     state.cartList = carts;
-    cartListTotalPrice.textContent = `NT$${finalTotal}`;
+    cartListTotalPrice.textContent = `NT$${thousands(finalTotal)}`;
     render("#cart-list", cartMarkup, state.cartList);
     useModal({ text: "删除成功" });
 });
@@ -212,9 +204,21 @@ cartListBottom.addEventListener("click", async (e) => {
     } = await useFetch({ method: "delete", url: "/carts" });
 
     state.cartList = carts;
-    cartListTotalPrice.textContent = `NT$${finalTotal}`;
+    cartListTotalPrice.textContent = `NT$${thousands(finalTotal)}`;
     render("#cart-list", cartMarkup, state.cartList);
     useModal({ text });
 });
+
+const init = async () => {
+    try {
+        const [productsList, cartList] = await useFetch(urlEndPoints);
+        state.productsList = productsList;
+        state.cartList = cartList;
+        render("#products-list", productMarkup, state.productsList);
+        render("#cart-list", cartMarkup, state.cartList);
+    } catch (error) {
+        useModal({ text: error.message, icon: "error" });
+    }
+};
 
 init();

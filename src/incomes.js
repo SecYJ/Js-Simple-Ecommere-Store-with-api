@@ -2,7 +2,6 @@ import { render, renderChart, arrayPair } from "./utils";
 import useFetch from "./hooks/useFetch";
 import useChart from "./hooks/useChart";
 import useModal from "./hooks/useModal";
-import "../style.css";
 
 const orderList = document.querySelector("#order-list");
 const clearCartBtn = document.querySelector("#clear-cart");
