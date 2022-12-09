@@ -8,7 +8,7 @@ const useModal = async ({ text, type = "", icon = "success" }) => {
             icon,
             buttons: {
                 confirm: {
-                    text: "Delete",
+                    text: "Confirm",
                     icon: "error",
                 },
                 cancel: true,

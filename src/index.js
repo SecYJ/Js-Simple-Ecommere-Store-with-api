@@ -185,7 +185,6 @@ cartList.addEventListener("click", async (e) => {
     state.cartList = carts;
     cartListTotalPrice.textContent = `NT$${thousands(finalTotal)}`;
     render("#cart-list", cartMarkup, state.cartList);
-    useModal({ text: "删除成功" });
 });
 
 cartListBottom.addEventListener("click", async (e) => {
