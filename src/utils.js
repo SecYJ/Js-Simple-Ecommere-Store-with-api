@@ -30,17 +30,5 @@ export const renderChart = (data) => {
 };
 
 export const thousands = (num) => {
-    return num
-        .toString()
-        .split("")
-        .reverse()
-        .map((item, index) => {
-            if (index === 0 || index === num.length - 1) return item;
-            if (index % 3 === 0) {
-                return `${item},`;
-            }
-            return item;
-        })
-        .reverse()
-        .join("");
+    return new Intl.NumberFormat(navigator?.language).format(num);
 };
